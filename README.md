@@ -3,7 +3,7 @@
 ## Screenshot
 
 <table>
-  <h3>ABCThe Login Screen</h3>
+  <h3>The Login Screen</h3>
   <tr>
     <p>To get into the system we are able to login via a few methods which included Facebook authentication, email and password, and so on. This application have keyboard avoider as well. When we are typing on the textholder.</p>
     <th>  
