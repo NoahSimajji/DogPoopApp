@@ -6,7 +6,7 @@ import {
   Text,
   TextInput,
   KeyboardAvoidingView,
-  AsyncStorage,
+  Dimensions,
 } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import * as SplashScreen from "expo-splash-screen";
@@ -15,6 +15,9 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as Facebook from "expo-facebook";
 import { LoginPhoto, FacebookLoginButton } from "../components/enlargeImage";
 import { StackActions } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+const phoneWidth = Dimensions.get("window").width;
 
 export default function App({ navigation }) {
   const [userName, setUserName] = useState("");
@@ -26,11 +29,10 @@ export default function App({ navigation }) {
       try {
         await SplashScreen.preventAutoHideAsync();
         await Font.loadAsync(Entypo.font);
-        await new Promise((resolve) => setTimeout(resolve, 3000));
+        await new Promise((resolve) => setTimeout(resolve, 1500));
       } catch (e) {
         console.warn(e);
       } finally {
-        // Tell the application to render
         setAppIsReady(true);
       }
     }
@@ -184,7 +186,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
-    width: 380,
+    width: phoneWidth,
     height: 500,
     backgroundColor: "rgba(0, 0, 0, 0.08)",
   },
@@ -212,7 +214,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#fff",
-    width: "80%",
+    width: phoneWidth - 50,
     borderRadius: 10,
   },
   searchIcon: {
