@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, TouchableOpacity, Modal, } from "react-native";
+import {
+  StyleSheet,
+  Dimensions,
+  View,
+  Text,
+  TouchableOpacity,
+  Modal,
+} from "react-native";
 import { StackActions } from "@react-navigation/native";
 import { HomePhoto } from "../components/enlargeImage";
 import {
@@ -11,33 +18,23 @@ import {
 import * as Animatable from "react-native-animatable";
 import { ModalSettingUpUser } from "../components/modalControl";
 import { useFirebaseData } from "../components/FirebaseControl";
+import { CleanAsyncStorage } from "../components/settingControl";
+
+const phoneWidth = Dimensions.get("window").width;
 
 export default function App({ navigation }) {
-  // Setting up state for modal visibility
   const [modalVisible, setModalVisible] = useState(true);
   const data = useFirebaseData();
 
   return (
     <View style={styles.container}>
-      {/* Background image */}
       <HomePhoto size={"big"} />
-
-      {/* Heigh control */}
       <View style={{ height: 210 }} />
-
-      {/* Arranging the grid view button */}
-      <View
-        style={{
-          alignSelf: "flex-start",
-          flexDirection: "row",
-          flexWrap: "wrap",
-        }}
-      >
-        {/* Button for Edit user and dog information */}
+      <View style={styles.settingButton}>
         <TouchableOpacity
           style={{
             backgroundColor: "white",
-            width: 150,
+            width: phoneWidth - 153,
             height: 100,
             marginLeft: 8,
             borderRadius: 10,
@@ -70,16 +67,16 @@ export default function App({ navigation }) {
         <TouchableOpacity
           style={{
             backgroundColor: "white",
-            width: 180,
+            width: phoneWidth - 260,
             height: 100,
-            marginLeft: 8,
             borderRadius: 10,
+            marginRight: 5,
             justifyContent: "center",
             alignItems: "center",
-            shadowColor: "rgba(0,0,0, .4)", // IOS
-            shadowOffset: { height: 1, width: 3 }, // IOS
-            shadowOpacity: 3, // IOS
-            shadowRadius: 3, //IOS
+            shadowColor: "rgba(0,0,0, .4)",
+            shadowOffset: { height: 1, width: 3 },
+            shadowOpacity: 3,
+            shadowRadius: 3,
             backgroundColor: "#fff",
           }}
           onPress={() => {
@@ -103,17 +100,17 @@ export default function App({ navigation }) {
         <TouchableOpacity
           style={{
             backgroundColor: "white",
-            width: 180,
+            width: phoneWidth - 200,
             height: 100,
             marginLeft: 8,
             borderRadius: 10,
             justifyContent: "center",
             alignItems: "center",
             marginTop: 8,
-            shadowColor: "rgba(0,0,0, .4)", // IOS
-            shadowOffset: { height: 1, width: 3 }, // IOS
-            shadowOpacity: 3, // IOS
-            shadowRadius: 3, //IOS
+            shadowColor: "rgba(0,0,0, .4)",
+            shadowOffset: { height: 1, width: 3 },
+            shadowOpacity: 3,
+            shadowRadius: 3,
             backgroundColor: "#fff",
           }}
           onPress={() => {
@@ -137,21 +134,22 @@ export default function App({ navigation }) {
         <TouchableOpacity
           style={{
             backgroundColor: "white",
-            width: 150,
+            width: phoneWidth - 215,
             height: 100,
             marginLeft: 8,
             borderRadius: 10,
             justifyContent: "center",
             alignItems: "center",
             marginTop: 8,
-            shadowColor: "rgba(0,0,0, .4)", // IOS
-            shadowOffset: { height: 1, width: 3 }, // IOS
-            shadowOpacity: 3, // IOS
-            shadowRadius: 3, //IOS
+            marginRight: 5,
+            shadowColor: "rgba(0,0,0, .4)",
+            shadowOffset: { height: 1, width: 3 },
+            shadowOpacity: 3,
+            shadowRadius: 3,
             backgroundColor: "#fff",
           }}
           onPress={() => {
-            alert("Still in development");
+            CleanAsyncStorage();
           }}
         >
           <AntDesign name="delete" size={42} color="gray" />
@@ -165,21 +163,20 @@ export default function App({ navigation }) {
           </Text>
         </TouchableOpacity>
 
-        {/* Button for Logout button for the user */}
         <TouchableOpacity
           style={{
             backgroundColor: "white",
-            width: 350,
+            width: phoneWidth - 15,
             height: 120,
             marginLeft: 8,
             borderRadius: 10,
             justifyContent: "center",
             alignItems: "center",
             marginTop: 8,
-            shadowColor: "rgba(0,0,0, .4)", // IOS
-            shadowOffset: { height: 1, width: 3 }, // IOS
-            shadowOpacity: 3, // IOS
-            shadowRadius: 3, //IOS
+            shadowColor: "rgba(0,0,0, .4)",
+            shadowOffset: { height: 1, width: 3 },
+            shadowOpacity: 3,
+            shadowRadius: 3,
             backgroundColor: "#fff",
           }}
           onPress={() => {
@@ -200,8 +197,7 @@ export default function App({ navigation }) {
         </TouchableOpacity>
       </View>
 
-      {/* Modal for prompt user information */}
-      {(data.length === 0) &&
+      {data.length === 0 && (
         <Modal
           animationType="fade"
           transparent={true}
@@ -218,7 +214,6 @@ export default function App({ navigation }) {
             ]}
           ></TouchableOpacity>
 
-          
           <View
             style={{
               backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -246,9 +241,8 @@ export default function App({ navigation }) {
               </>
             </Animatable.View>
           </View>
-          
         </Modal>
-      }
+      )}
     </View>
   );
 }
@@ -256,5 +250,10 @@ export default function App({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  settingButton: {
+    justifyContent: "space-between",
+    flexDirection: "row",
+    flexWrap: "wrap",
   },
 });
