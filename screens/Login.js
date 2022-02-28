@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -8,6 +8,9 @@ import {
   KeyboardAvoidingView,
   AsyncStorage,
 } from "react-native";
+import { Entypo } from "@expo/vector-icons";
+import * as SplashScreen from "expo-splash-screen";
+import * as Font from "expo-font";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as Facebook from "expo-facebook";
 import { LoginPhoto, FacebookLoginButton } from "../components/enlargeImage";
@@ -16,6 +19,34 @@ import { StackActions } from "@react-navigation/native";
 export default function App({ navigation }) {
   const [userName, setUserName] = useState("");
   const [userPassword, setPassword] = useState("");
+  const [appIsReady, setAppIsReady] = useState(false);
+
+  useEffect(() => {
+    async function prepare() {
+      try {
+        await SplashScreen.preventAutoHideAsync();
+        await Font.loadAsync(Entypo.font);
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        // Tell the application to render
+        setAppIsReady(true);
+      }
+    }
+
+    prepare();
+  }, []);
+
+  const onLayoutRootView = useCallback(async () => {
+    if (appIsReady) {
+      await SplashScreen.hideAsync();
+    }
+  }, [appIsReady]);
+
+  if (!appIsReady) {
+    return null;
+  }
 
   facebookLogIn = async () => {
     try {
@@ -52,7 +83,7 @@ export default function App({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} onLayout={onLayoutRootView}>
       <KeyboardAvoidingView
         behavior={Platform.OS == "ios" ? "padding" : "height"}
         style={styles.container}
@@ -71,7 +102,6 @@ export default function App({ navigation }) {
           <Text
             style={{
               paddingTop: 10,
-              fontFamily: "American Typewriter",
               fontSize: 15,
             }}
           >
