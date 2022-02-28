@@ -5,7 +5,6 @@ import Contents from "./screens/Contents.js";
 import Profile from "./screens/Profile.js";
 import Settings from "./screens/Settings.js";
 import Login from "./screens/Login.js";
-import Splash from "./screens/Splash.js";
 import React from "react";
 import {
   MaterialCommunityIcons,
@@ -57,12 +56,7 @@ function HomeScreen() {
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Splash">
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Splash"
-          component={Splash}
-        />
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
           options={{ headerShown: false }}
           name="Login"
