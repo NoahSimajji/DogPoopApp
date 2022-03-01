@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import * as firebase from "firebase";
 import { Audio } from "expo-av";
-import { AsyncStorage } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 //API key for Firebase connection
 const config = {
@@ -146,11 +146,12 @@ export async function pushTheData(props) {
     try {
       const userId = await AsyncStorage.getItem("@MySuperStore:key1");
       const userName = await AsyncStorage.getItem("@MySuperStore:key2");
-        
-        userIDForSave = userId;
-        userNameGiven = userName;
-      
-    } catch (error) {console.log(error)}
+
+      userIDForSave = userId;
+      userNameGiven = userName;
+    } catch (error) {
+      console.log(error);
+    }
 
     // User registering
     const newReference1 = firebase
@@ -192,9 +193,9 @@ export async function pushTheData(props) {
         const soundObject = new Audio.Sound();
         try {
           // Dog sounds
-          await soundObject.loadAsync(require('../assets/dogWoff.mp3'));
+          await soundObject.loadAsync(require("../assets/dogWoff.mp3"));
           await soundObject.playAsync();
-          alert("Saved new record")
+          alert("Saved new record");
         } catch (error) {}
       });
   }
