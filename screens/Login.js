@@ -95,7 +95,6 @@ export default function App({ navigation }) {
           <Text
             style={{
               paddingTop: 25,
-              fontFamily: "AmericanTypewriter-Bold",
               fontSize: 28,
             }}
           >

@@ -42,7 +42,6 @@ export default function App(props) {
         <Text
           style={{
             paddingTop: 10,
-            fontFamily: "AmericanTypewriter-Bold",
             fontSize: 24,
             paddingLeft: 8,
           }}
