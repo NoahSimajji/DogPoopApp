@@ -1,10 +1,8 @@
 import React from "react";
 import { Animated, View } from "react-native";
 
-// Path for the images
-const image = require("../assets/dog1.jpg");
+const image = require("../assets/prettyDog.png");
 const image2 = require("../assets/dogPark.png");
-const image3 = require("../assets/doglogo.jpg");
 const image4 = require("../assets/facebookButton.jpg");
 const image5 = require("../assets/avatar1.png");
 const image6 = require("../assets/avatar2.png");
@@ -12,12 +10,11 @@ const image6 = require("../assets/avatar2.png");
 export function PhotoAnimation(props) {
   return (
     <View>
-      {/* Images for output */}
       <Animated.Image
         source={image}
         resizeMode="cover"
         style={{
-          width: 80,
+          width: 90,
           height: 80,
           borderRadius: 12,
           alignSelf: "center",
@@ -30,14 +27,12 @@ export function PhotoAnimation(props) {
 }
 
 export function HomePhoto(props) {
-  // If statement for different requirement
   let heighVolume = 140;
   if (props.size == "big") {
     heighVolume = 200;
   }
   return (
     <View>
-      {/* Images for output */}
       <Animated.Image
         source={image2}
         resizeMode="cover"
@@ -70,7 +65,7 @@ export function LoginPhoto(props) {
     <View>
       {/* Images for output */}
       <Animated.Image
-        source={image3}
+        source={image2}
         resizeMode="cover"
         style={{
           width: size1,
