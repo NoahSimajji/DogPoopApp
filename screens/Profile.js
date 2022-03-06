@@ -51,7 +51,6 @@ export default function App(props) {
         <Text
           style={{
             paddingTop: 10,
-            fontFamily: "American Typewriter",
             fontSize: 18,
             paddingLeft: 8,
           }}
@@ -61,7 +60,6 @@ export default function App(props) {
         <Text
           style={{
             paddingTop: 10,
-            fontFamily: "American Typewriter",
             fontSize: 18,
             paddingLeft: 8,
           }}

@@ -16,10 +16,8 @@ export function ModalFeatures(props) {
   return (
     <>
       {/* Modal for add record to the database */}
-      <Text style={{ fontFamily: "American Typewriter", fontSize: 22 }}>
-        Activity Dog Today
-      </Text>
-      
+      <Text style={{ fontSize: 22 }}>Activity Dog Today</Text>
+
       {/* Poop or not the button will back to initial color if press twice */}
       <View flexDirection="row" style={{ marginTop: 15 }}>
         <TouchableOpacity
@@ -49,7 +47,6 @@ export function ModalFeatures(props) {
             />
             <Text
               style={{
-                fontFamily: "American Typewriter",
                 color: "white",
                 marginTop: 2,
                 fontSize: 18,
@@ -88,7 +85,6 @@ export function ModalFeatures(props) {
             />
             <Text
               style={{
-                fontFamily: "American Typewriter",
                 color: "white",
                 marginTop: 2,
                 fontSize: 18,
@@ -100,7 +96,7 @@ export function ModalFeatures(props) {
           </View>
         </TouchableOpacity>
       </View>
-      
+
       {/* The user can type some extra notes here */}
       <View
         style={{ flex: 1, marginTop: 5 }}
@@ -128,7 +124,7 @@ export function ModalFeatures(props) {
             style={{ alignItems: "center", paddingBottom: 20, paddingTop: 20 }}
           >
             <Ionicons name="md-send" size={35} color="black" />
-            <Text style={{ fontFamily: "American Typewriter" }}>Upload</Text>
+            <Text>Upload</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -144,29 +140,33 @@ export function ModalSettingUpUser(props) {
   return (
     <>
       {/* Modal for register to database */}
-      <Text style={{ fontFamily: "American Typewriter", fontSize: 22 }}>
-        Welcome to Setting up Screen
-      </Text>
+      <Text style={{ fontSize: 22 }}>Welcome to Setting up Screen</Text>
 
       {/* Greetings */}
       <Text
         style={{
-          fontFamily: "American Typewriter",
           fontSize: 14,
-          padding: 15
+          padding: 15,
         }}
       >
         It is a honor to serve you as our first beta users and we will be having
         a good time with our doggo and change the whole feeling into another
         level!
       </Text>
-      
+
       {/* Text input for data insertion */}
-      <View style={{ flexDirection: "column", paddingTop: 10, justifyContent:'space-between', alignItems:'flex-end', height: "30%"  }}>
+      <View
+        style={{
+          flexDirection: "column",
+          paddingTop: 10,
+          justifyContent: "space-between",
+          alignItems: "flex-end",
+          height: "30%",
+        }}
+      >
         <View>
           <Text
             style={{
-              fontFamily: "American Typewriter",
               fontSize: 14,
               paddingTop: 5,
               paddingLeft: 10,
@@ -184,7 +184,7 @@ export function ModalSettingUpUser(props) {
               backgroundColor: "rgba(0, 0, 0, 0.1)",
               borderRadius: 10,
               marginRight: 5,
-              width: 300
+              width: 300,
             }}
             placeholder="Enter User name..."
             onChangeText={(username) => {
@@ -197,7 +197,6 @@ export function ModalSettingUpUser(props) {
         <View>
           <Text
             style={{
-              fontFamily: "American Typewriter",
               fontSize: 14,
               paddingTop: 5,
               paddingLeft: 10,
@@ -215,7 +214,7 @@ export function ModalSettingUpUser(props) {
               backgroundColor: "rgba(0, 0, 0, 0.1)",
               borderRadius: 10,
               marginRight: 5,
-              width: 300
+              width: 300,
             }}
             placeholder="Enter sex..."
             // onChangeText={(dogage) => {
@@ -228,7 +227,6 @@ export function ModalSettingUpUser(props) {
         <View>
           <Text
             style={{
-              fontFamily: "American Typewriter",
               fontSize: 14,
               paddingTop: 5,
               paddingLeft: 10,
@@ -246,7 +244,7 @@ export function ModalSettingUpUser(props) {
               backgroundColor: "rgba(0, 0, 0, 0.1)",
               borderRadius: 10,
               marginRight: 5,
-              width: 300
+              width: 300,
             }}
             placeholder="Enter dog's name..."
             onChangeText={(dogname) => {
@@ -259,7 +257,6 @@ export function ModalSettingUpUser(props) {
         <View>
           <Text
             style={{
-              fontFamily: "American Typewriter",
               fontSize: 14,
               paddingTop: 5,
               paddingLeft: 10,
@@ -277,7 +274,7 @@ export function ModalSettingUpUser(props) {
               backgroundColor: "rgba(0, 0, 0, 0.1)",
               borderRadius: 10,
               marginRight: 5,
-              width: 300
+              width: 300,
             }}
             placeholder="Enter dog age..."
             onChangeText={(dogage) => {
@@ -287,7 +284,7 @@ export function ModalSettingUpUser(props) {
           />
         </View>
       </View>
-      
+
       {/* Button to submit */}
       <TouchableOpacity
         onPress={() => {
@@ -304,7 +301,7 @@ export function ModalSettingUpUser(props) {
           style={{ alignItems: "center", paddingBottom: 20, paddingTop: 180 }}
         >
           <Ionicons name="md-send" size={35} color="black" />
-          <Text style={{ fontFamily: "American Typewriter" }}>Confirm!</Text>
+          <Text>Confirm!</Text>
         </View>
       </TouchableOpacity>
     </>

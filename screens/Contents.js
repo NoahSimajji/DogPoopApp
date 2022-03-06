@@ -11,6 +11,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { Ionicons, Entypo, MaterialIcons, AntDesign } from "@expo/vector-icons";
+
 import * as Animatable from "react-native-animatable";
 import {
   useFirebaseData,
@@ -19,6 +20,7 @@ import {
   useFirebaseDataDogAge,
   useFirebaseDataGroup,
 } from "../components/FirebaseControl";
+
 import {
   HomePhoto,
   PhotoAnimation,
@@ -190,7 +192,6 @@ export default function App({ navigation }) {
                     <MaterialIcons name="date-range" size={22} color="gray" />
                     <Text
                       style={{
-                        fontFamily: "American Typewriter",
                         color: "gray",
                       }}
                     >
@@ -202,7 +203,6 @@ export default function App({ navigation }) {
                     <AntDesign name="clockcircleo" size={22} color="gray" />
                     <Text
                       style={{
-                        fontFamily: "American Typewriter",
                         color: "gray",
                       }}
                     >

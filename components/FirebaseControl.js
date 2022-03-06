@@ -20,7 +20,7 @@ try {
   firebase.initializeApp(config);
   console.log("Logged into app");
 } catch (e) {
-  console.log("App reloaded, so firebase did not re-initialize");
+  console.log(e);
 }
 
 //Read for the flatlist
@@ -122,7 +122,7 @@ export async function pushTheData(props) {
   let userNameGiven = "";
 
   if (props.firstAttempt == true) {
-    // alert("Working on the register!")
+    // TODO: Working on the register
     // working on the random naming things
 
     // Group random words generator codes
