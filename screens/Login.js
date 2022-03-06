@@ -33,10 +33,8 @@ export default function App({ navigation }) {
         await new Promise(async (resolve) => {
           const userId = await AsyncStorage.getItem("@MySuperStore:key1");
           const userName = await AsyncStorage.getItem("@MySuperStore:key2");
-
           console.log(`userId ${userId}`);
           console.log(`userName ${userName}`);
-
           if (userId !== null) {
             navigation.dispatch(StackActions.replace("Home"));
             resolve;
@@ -153,8 +151,6 @@ export default function App({ navigation }) {
               onChangeText={(newText) => setPassword(newText)}
             />
           </View>
-
-          {/* Button for username and password login */}
           <TouchableOpacity
             style={styles.loginBtn}
             onPress={async () => {
@@ -172,11 +168,7 @@ export default function App({ navigation }) {
           >
             <Text style={{ color: "white", fontSize: 18 }}>Login</Text>
           </TouchableOpacity>
-
-          {/* Make another way for this styling */}
           <View style={{ height: 20 }} />
-
-          {/* Using the photo taken from another file and will trigger the facebook log in feature */}
           <TouchableOpacity
             onPress={() => {
               facebookLogIn();
@@ -190,7 +182,6 @@ export default function App({ navigation }) {
   );
 }
 
-// Styling
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
