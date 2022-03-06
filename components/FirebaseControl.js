@@ -29,7 +29,7 @@ export function useFirebaseData() {
   function test2() {
     firebase
       .database()
-      .ref("List/abcdefg/dogs/dogA/dogStatus/")
+      .ref("dogs/dogA/dogStatusHistory/")
       .on("value", function (snapshot) {
         const items = [];
         snapshot.forEach((child1) => {
@@ -50,7 +50,7 @@ export function useFirebaseDataGroup() {
   function test2() {
     firebase
       .database()
-      .ref("List/abcdefg/users")
+      .ref("users")
       .on("value", function (snapshot) {
         const items = [];
         snapshot.forEach((child1) => {
@@ -71,7 +71,7 @@ export function useFirebaseDataUsername() {
   function test2() {
     firebase
       .database()
-      .ref("List/abcdefg/dogs/dogA/userName")
+      .ref("dogs/dogA/userName")
       .on("value", function (snapshot) {
         setData(snapshot.val());
       });
@@ -88,7 +88,7 @@ export function useFirebaseDataDogAge() {
   function test2() {
     firebase
       .database()
-      .ref("List/abcdefg/dogs/dogA/dogAge")
+      .ref("dogs/dogA/dogAge")
       .on("value", function (snapshot) {
         setData(snapshot.val());
       });
@@ -105,7 +105,7 @@ export function useFirebaseDataDogName() {
   function test2() {
     firebase
       .database()
-      .ref("List/abcdefg/dogs/dogA/dogName")
+      .ref("dogs/dogA/dogName")
       .on("value", function (snapshot) {
         setData(snapshot.val());
       });
@@ -134,7 +134,7 @@ export async function pushTheData(props) {
     //     Math.floor(Math.random() * randomChars.length)
     //   );
     // }
-    const newReference = firebase.database().ref("List/abcdefg/dogs/");
+    const newReference = firebase.database().ref("dogs/");
     newReference.set({
       dogA: {
         dogAge: props.dogage,
@@ -154,9 +154,7 @@ export async function pushTheData(props) {
     }
 
     // User registering
-    const newReference1 = firebase
-      .database()
-      .ref("List/abcdefg/users/" + userIDForSave);
+    const newReference1 = firebase.database().ref("users/" + userIDForSave);
     newReference1
       .set({
         userName: userNameGiven,
@@ -168,7 +166,7 @@ export async function pushTheData(props) {
     var unix = Math.round(+new Date() / 1000);
     const newReference = firebase
       .database()
-      .ref("List/abcdefg/dogs/dogA/dogStatus/" + unix);
+      .ref("dogs/dogA/dogStatusHistory/" + unix);
     var today = new Date();
     var date =
       today.getDate() +
