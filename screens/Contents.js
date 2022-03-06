@@ -77,18 +77,14 @@ export default function App({ navigation }) {
 
   return (
     <View style={styles.container}>
-      {/* Inside there is top list and dog info lists */}
       <ScrollView>
-        {/* Photo take from another */}
         <HomePhoto />
-        {/* The top floating member lists */}
         <ScrollView horizontal={true}>
           <View
             style={{ height: 105, paddingTop: 5 }}
             flexDirection="row"
             justifyContent="space-around"
           >
-            {/* Group members list */}
             <FlatList
               horizontal={true}
               data={dataGroup}
@@ -103,7 +99,6 @@ export default function App({ navigation }) {
               keyExtractor={(item) => item.key1}
             />
 
-            {/* Still in development Join or create */}
             <TouchableOpacity
               style={{
                 width: 75,
@@ -120,17 +115,13 @@ export default function App({ navigation }) {
           </View>
         </ScrollView>
 
-        {/* This is the loading indicator */}
         <ActivityIndicator
           size="large"
           color="black"
           animating={toggleLoading}
           style={{ marginTop: 180, position: "absolute", alignSelf: "center" }}
         />
-        {/* Just to control the height */}
         <View style={{ height: 10 }} />
-
-        {/* The dog status information */}
         <FlatList
           data={data.sort((a, b) => {
             return b.key1.localeCompare(a.key1);
@@ -225,7 +216,6 @@ export default function App({ navigation }) {
         />
       </ScrollView>
 
-      {/* Modal slide up */}
       <Modal
         animationType="fade"
         transparent={true}
@@ -274,7 +264,6 @@ export default function App({ navigation }) {
         </View>
       </Modal>
 
-      {/* Floating button */}
       <TouchableOpacity
         style={{
           borderWidth: 1,
