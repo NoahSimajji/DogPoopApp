@@ -6,8 +6,8 @@ import { Text, View, Button, Platform } from "react-native";
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
-    shouldPlaySound: false,
-    shouldSetBadge: false,
+    shouldPlaySound: true,
+    shouldSetBadge: true,
   }),
 });
 
@@ -45,22 +45,12 @@ export default function App() {
   return (
     <View
       style={{
-        flex: 1,
+        flex: 0,
+        height: 70,
         alignItems: "center",
         justifyContent: "space-around",
       }}
     >
-      <Text>Your expo push token: {expoPushToken}</Text>
-      <View style={{ alignItems: "center", justifyContent: "center" }}>
-        <Text>
-          Title: {notification && notification.request.content.title}{" "}
-        </Text>
-        <Text>Body: {notification && notification.request.content.body}</Text>
-        <Text>
-          Data:{" "}
-          {notification && JSON.stringify(notification.request.content.data)}
-        </Text>
-      </View>
       <Button
         title="Press to Send Notification"
         onPress={async () => {
@@ -76,8 +66,8 @@ async function sendPushNotification(expoPushToken) {
   const message = {
     to: expoPushToken,
     sound: "default",
-    title: "Original Title",
-    body: "And here is the body!",
+    title: "Good day",
+    body: "Is time to walk your dog",
     data: { someData: "goes here" },
   };
 
