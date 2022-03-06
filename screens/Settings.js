@@ -55,7 +55,6 @@ export default function App({ navigation }) {
           <Text
             style={{
               paddingTop: 10,
-              fontFamily: "American Typewriter",
               fontSize: 15,
             }}
           >
@@ -88,7 +87,6 @@ export default function App({ navigation }) {
           <Text
             style={{
               paddingTop: 10,
-              fontFamily: "American Typewriter",
               fontSize: 15,
             }}
           >
@@ -122,7 +120,6 @@ export default function App({ navigation }) {
           <Text
             style={{
               paddingTop: 10,
-              fontFamily: "American Typewriter",
               fontSize: 15,
             }}
           >
@@ -150,12 +147,12 @@ export default function App({ navigation }) {
           }}
           onPress={() => {
             CleanAsyncStorage();
+            alert("Data being wiped off.");
           }}
         >
           <AntDesign name="delete" size={42} color="gray" />
           <Text
             style={{
-              fontFamily: "American Typewriter",
               fontSize: 15,
             }}
           >
@@ -180,6 +177,7 @@ export default function App({ navigation }) {
             backgroundColor: "#fff",
           }}
           onPress={() => {
+            CleanAsyncStorage();
             navigation.dispatch(StackActions.replace("Login"));
           }}
         >
@@ -188,7 +186,6 @@ export default function App({ navigation }) {
           <Text
             style={{
               paddingTop: 10,
-              fontFamily: "American Typewriter",
               fontSize: 15,
             }}
           >

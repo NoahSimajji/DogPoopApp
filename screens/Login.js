@@ -29,7 +29,23 @@ export default function App({ navigation }) {
       try {
         await SplashScreen.preventAutoHideAsync();
         await Font.loadAsync(Entypo.font);
-        await new Promise((resolve) => setTimeout(resolve, 1500));
+
+        await new Promise(async (resolve) => {
+          const userId = await AsyncStorage.getItem("@MySuperStore:key1");
+          const userName = await AsyncStorage.getItem("@MySuperStore:key2");
+
+          console.log(`userId ${userId}`);
+          console.log(`userName ${userName}`);
+
+          if (userId !== null) {
+            navigation.dispatch(StackActions.replace("Home"));
+            resolve;
+          } else {
+            //NOTE: When user first attempt
+            setTimeout(resolve, 1500);
+            resolve;
+          }
+        });
       } catch (e) {
         console.warn(e);
       } finally {
@@ -142,14 +158,14 @@ export default function App({ navigation }) {
           <TouchableOpacity
             style={styles.loginBtn}
             onPress={async () => {
-              if (userName === "Aaa" && userPassword === "bbb") {
+              if (userName === "Aaa" && userPassword === "Bbb") {
                 await AsyncStorage.setItem(
                   "@MySuperStore:key2",
                   "Admin"
                 ).then();
                 await AsyncStorage.setItem(
                   "@MySuperStore:key1",
-                  "abssadk12316123Fake"
+                  "Password2"
                 ).then(navigation.dispatch(StackActions.replace("Home")));
               }
             }}
