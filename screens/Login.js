@@ -23,6 +23,7 @@ export default function App({ navigation }) {
   const [userName, setUserName] = useState("");
   const [userPassword, setPassword] = useState("");
   const [appIsReady, setAppIsReady] = useState(false);
+  const [userDetails, setUserDetails] = useState("");
 
   useEffect(() => {
     async function prepare() {
@@ -30,19 +31,12 @@ export default function App({ navigation }) {
         await SplashScreen.preventAutoHideAsync();
         await Font.loadAsync(Entypo.font);
 
-        await new Promise(async (resolve) => {
-          const userId = await AsyncStorage.getItem("@MySuperStore:key1");
-          const userName = await AsyncStorage.getItem("@MySuperStore:key2");
-          console.log(`userId ${userId}`);
-          console.log(`userName ${userName}`);
-          if (userId !== null) {
-            navigation.dispatch(StackActions.replace("Home"));
-            resolve;
-          } else {
-            //NOTE: When user first attempt
-            setTimeout(resolve, 1500);
-            resolve;
-          }
+        const userId = await AsyncStorage.getItem("@MySuperStore:key1");
+        const userName = await AsyncStorage.getItem("@MySuperStore:key2");
+
+        await new Promise((resolve) => {
+          setUserDetails({ userId: userId, userName: userName });
+          setTimeout(resolve, 1500);
         });
       } catch (e) {
         console.warn(e);
@@ -57,6 +51,10 @@ export default function App({ navigation }) {
   const onLayoutRootView = useCallback(async () => {
     if (appIsReady) {
       await SplashScreen.hideAsync();
+    }
+
+    if (userDetails.userId !== null) {
+      navigation.dispatch(StackActions.replace("Home"));
     }
   }, [appIsReady]);
 
@@ -161,7 +159,7 @@ export default function App({ navigation }) {
                 ).then();
                 await AsyncStorage.setItem(
                   "@MySuperStore:key1",
-                  "Password2"
+                  "User112"
                 ).then(navigation.dispatch(StackActions.replace("Home")));
               }
             }}
