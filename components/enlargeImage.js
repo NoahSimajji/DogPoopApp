@@ -61,6 +61,12 @@ export function LoginPhoto(props) {
     borderEdge = 300;
   }
 
+  if (props.size == "medium") {
+    size1 = 230;
+    size2 = 150;
+    borderEdge = 0;
+  }
+
   return (
     <View>
       {/* Images for output */}
