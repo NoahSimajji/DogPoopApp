@@ -42,23 +42,7 @@ export default function App() {
     };
   }, []);
 
-  return (
-    <View
-      style={{
-        flex: 0,
-        height: 70,
-        alignItems: "center",
-        justifyContent: "space-around",
-      }}
-    >
-      <Button
-        title="Press to Send Notification"
-        onPress={async () => {
-          await sendPushNotification(expoPushToken);
-        }}
-      />
-    </View>
-  );
+  return null;
 }
 
 // Can use this function below, OR use Expo's Push Notification Tool-> https://expo.dev/notifications
