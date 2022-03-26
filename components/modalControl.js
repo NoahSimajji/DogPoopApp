@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   View,
@@ -15,10 +15,7 @@ export function ModalFeatures(props) {
 
   return (
     <>
-      {/* Modal for add record to the database */}
       <Text style={{ fontSize: 22 }}>Activity Dog Today</Text>
-
-      {/* Poop or not the button will back to initial color if press twice */}
       <View flexDirection="row" style={{ marginTop: 15 }}>
         <TouchableOpacity
           style={{
@@ -57,7 +54,6 @@ export function ModalFeatures(props) {
             </Text>
           </View>
         </TouchableOpacity>
-
         <TouchableOpacity
           style={{
             marginRight: 20,
@@ -96,8 +92,6 @@ export function ModalFeatures(props) {
           </View>
         </TouchableOpacity>
       </View>
-
-      {/* The user can type some extra notes here */}
       <View
         style={{ flex: 1, marginTop: 5 }}
         flexDirection="column"
@@ -113,7 +107,6 @@ export function ModalFeatures(props) {
             underlineColorAndroid="transparent"
           />
         </View>
-
         <TouchableOpacity
           onPress={() => {
             pushTheData({ status: condition, text: textInputValue });
@@ -139,10 +132,8 @@ export function ModalSettingUpUser(props) {
 
   return (
     <>
-      {/* Modal for register to database */}
       <Text style={{ fontSize: 22 }}>Welcome to Setting up Screen</Text>
 
-      {/* Greetings */}
       <Text
         style={{
           fontSize: 14,
@@ -153,8 +144,6 @@ export function ModalSettingUpUser(props) {
         a good time with our doggo and change the whole feeling into another
         level!
       </Text>
-
-      {/* Text input for data insertion */}
       <View
         style={{
           flexDirection: "column",
@@ -284,8 +273,6 @@ export function ModalSettingUpUser(props) {
           />
         </View>
       </View>
-
-      {/* Button to submit */}
       <TouchableOpacity
         onPress={() => {
           pushTheData({
