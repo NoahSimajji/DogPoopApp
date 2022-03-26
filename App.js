@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import Login from "./screens/Login.js";
+import Register from "./screens/Register.js";
 import HomeScreen from "./navigate/HomeStack";
 import RemotePushNotification from "./services/RemotePushNotification";
 import { LoginPhoto } from "./components/enlargeImage";
@@ -20,6 +21,7 @@ function App() {
             name="Login"
             component={Login}
           />
+          <Stack.Screen name="Register" component={Register} />
           <Stack.Screen
             options={{
               headerLeft: () => <LoginPhoto size={"small"} />,
