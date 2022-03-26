@@ -17,13 +17,30 @@ import { LoginPhoto, FacebookLoginButton } from "../components/enlargeImage";
 import { StackActions } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import { auth } from "../components/FirebaseControl";
+
 const phoneWidth = Dimensions.get("window").width;
 
 export default function App({ navigation }) {
-  const [userName, setUserName] = useState("");
-  const [userPassword, setPassword] = useState("");
+  const [userName, setUserName] = useState("ninjayek@gmail.com");
+  const [userPassword, setPassword] = useState("abcdefgg");
   const [appIsReady, setAppIsReady] = useState(false);
   const [userDetails, setUserDetails] = useState("");
+
+  testLogin = () => {
+    auth
+      .signInWithEmailAndPassword(userName, userPassword)
+      .then(async (userCredential) => {
+        const user = userCredential.user;
+        // console.log(user.uid);
+
+        await AsyncStorage.setItem("@MySuperStore:key2", "AdminX").then();
+        await AsyncStorage.setItem("@MySuperStore:key1", "Mr X").then(
+          navigation.dispatch(StackActions.replace("Home"))
+        );
+      })
+      .catch((error) => alert(error));
+  };
 
   useEffect(() => {
     async function prepare() {
@@ -130,8 +147,9 @@ export default function App({ navigation }) {
             <TextInput
               style={styles.input}
               placeholder="Enter User Name..."
+              value={userName}
               underlineColorAndroid="transparent"
-              onChangeText={(newText) => setUserName(newText)}
+              onChangeText={(userName) => setUserName(userName)}
             />
           </View>
           <View style={styles.searchSection}>
@@ -144,6 +162,7 @@ export default function App({ navigation }) {
             <TextInput
               style={styles.input}
               placeholder="Enter User Password..."
+              value={userPassword}
               underlineColorAndroid="transparent"
               secureTextEntry={true}
               onChangeText={(newText) => setPassword(newText)}
@@ -152,18 +171,7 @@ export default function App({ navigation }) {
           <TouchableOpacity
             style={styles.loginBtn}
             onPress={async () => {
-              if (userName === "Aaa" && userPassword === "Bbb") {
-                await AsyncStorage.setItem(
-                  "@MySuperStore:key2",
-                  "Admin"
-                ).then();
-                await AsyncStorage.setItem(
-                  "@MySuperStore:key1",
-                  "User112"
-                ).then(navigation.dispatch(StackActions.replace("Home")));
-              } else {
-                alert("Invalid User name or password");
-              }
+              testLogin();
             }}
           >
             <Text style={{ color: "white", fontSize: 18 }}>Login</Text>

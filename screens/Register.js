@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { LoginPhoto } from "../components/enlargeImage";
-import { pushTheData } from "../components/FirebaseControl";
+import { pushTheData, auth } from "../components/FirebaseControl";
 
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
@@ -20,9 +20,29 @@ export default function App({ navigation }) {
   const [userNameState, setUsername] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [userSex, setUserSex] = useState("");
+  const [userUid, setUserUid] = useState("");
   const [userGroupCode, setUserGroupCode] = useState("");
   const [dogNameState, setDogName] = useState("");
   const [dogAgeState, setDogAge] = useState(0);
+
+  //This is the register way.
+  testRegister = async () => {
+    // const email = "ninjayek@gmail.com";
+    // const password = "abcdefgg";
+
+    // const email1 = "test@gmail.com";
+    // const password1 = "123456";
+
+    await auth
+      .createUserWithEmailAndPassword(userNameState, userPassword)
+      .then((userCredential) => {
+        const user = userCredential.user;
+
+        setUserUid(user.uid);
+        alert("registered.");
+      })
+      .catch((error) => alert(error));
+  };
 
   return (
     <KeyboardAwareScrollView>
@@ -157,13 +177,21 @@ export default function App({ navigation }) {
           <TouchableOpacity
             style={styles.loginBtn}
             onPress={() => {
+              alert("Submitted");
+              testRegister();
               pushTheData({
                 firstAttempt: true,
+                uid: userUid,
                 username: userNameState,
-                dogage: dogAgeState,
-                dogname: dogNameState,
+                userPassword: userPassword,
+                userSex: userSex,
+                userGroupCode: userGroupCode,
+                dogAge: dogAgeState,
+                dogName: dogNameState,
               });
-              props.closeUp(false);
+
+              // Suppose go to home screen instead
+              // navigation.replace("Login");
             }}
           >
             <Text style={{ color: "white", fontSize: 18 }}>Register</Text>

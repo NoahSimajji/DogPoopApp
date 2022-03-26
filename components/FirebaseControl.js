@@ -3,7 +3,6 @@ import * as firebase from "firebase";
 import { Audio } from "expo-av";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-//API key for Firebase connection
 const config = {
   apiKey: "AIzaSyA6iPmdMQFyBmH7aPiukZ71srz9vHw0uSs",
   authDomain: "angelapp-6b5e0.firebaseapp.com",
@@ -23,13 +22,17 @@ try {
   console.log(e);
 }
 
+const auth = firebase.auth();
+
+export { auth };
+
 //Read for the flatlist
 export function useFirebaseData() {
   const [data, setData] = useState([]);
   function test2() {
     firebase
       .database()
-      .ref("dogs/dogA/dogStatusHistory/")
+      .ref("Ttt1/DogStatusHistory/")
       .on("value", function (snapshot) {
         const items = [];
         snapshot.forEach((child1) => {
@@ -50,7 +53,7 @@ export function useFirebaseDataGroup() {
   function test2() {
     firebase
       .database()
-      .ref("users")
+      .ref("Ttt1/Users")
       .on("value", function (snapshot) {
         const items = [];
         snapshot.forEach((child1) => {
@@ -122,27 +125,18 @@ export async function pushTheData(props) {
   let userNameGiven = "";
 
   if (props.firstAttempt == true) {
-    // TODO: Working on the register
-    // working on the random naming things
-
-    // Group random words generator codes
-    // var randomChars =
-    //   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    // var result = "";
-    // for (var i = 0; i < 10; i++) {
-    //   result += randomChars.charAt(
-    //     Math.floor(Math.random() * randomChars.length)
-    //   );
-    // }
-    const newReference = firebase.database().ref("dogs/");
+    const newReference = firebase
+      .database()
+      .ref(props.userGroupCode + "/Users/" + props.uid + "/");
     newReference.set({
-      dogA: {
-        dogAge: props.dogage,
-        dogName: props.dogname,
-        userName: props.username,
-      },
+      uid: props.uid,
+      userName: props.username,
+      userPassword: props.userPassword,
+      userSex: props.userSex,
+      dogAge: props.dogAge,
+      dogName: props.dogName,
+      groupCode: props.userGroupCode,
     });
-    // await AsyncStorage.setItem("@MySuperStore:GroupCode", result);
     try {
       const userId = await AsyncStorage.getItem("@MySuperStore:key1");
       const userName = await AsyncStorage.getItem("@MySuperStore:key2");
@@ -152,21 +146,12 @@ export async function pushTheData(props) {
     } catch (error) {
       console.log(error);
     }
-
-    // User registering
-    const newReference1 = firebase.database().ref("users/" + userIDForSave);
-    newReference1
-      .set({
-        userName: userNameGiven,
-        userPhotos: "-",
-      })
-      .then();
   } else {
     // ------------------This one is if it is not first attempt----------------------------
     var unix = Math.round(+new Date() / 1000);
     const newReference = firebase
       .database()
-      .ref("dogs/dogA/dogStatusHistory/" + unix);
+      .ref("Ttt1/DogStatusHistory/" + unix);
     var today = new Date();
     var date =
       today.getDate() +
