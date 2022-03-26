@@ -161,6 +161,8 @@ export default function App({ navigation }) {
                   "@MySuperStore:key1",
                   "User112"
                 ).then(navigation.dispatch(StackActions.replace("Home")));
+              } else {
+                alert("Invalid User name or password");
               }
             }}
           >
