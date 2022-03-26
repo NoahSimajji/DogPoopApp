@@ -166,6 +166,14 @@ export default function App({ navigation }) {
           >
             <Text style={{ color: "white", fontSize: 18 }}>Login</Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.registerBtn}
+            onPress={() => {
+              navigation.navigate("Register");
+            }}
+          >
+            <Text style={{ color: "white", fontSize: 18 }}>Register</Text>
+          </TouchableOpacity>
           <View style={{ height: 20 }} />
           <TouchableOpacity
             onPress={() => {
@@ -195,7 +203,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0, 0, 0, 0.08)",
   },
   loginBtn: {
-    backgroundColor: "#66CCCC",
+    backgroundColor: "#9aeaea",
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 10,
@@ -204,13 +212,15 @@ const styles = StyleSheet.create({
     marginTop: 20,
     alignItems: "center",
   },
-  logoutBtn: {
-    backgroundColor: "grey",
+  registerBtn: {
+    backgroundColor: "#9aeaea",
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 10,
-    position: "absolute",
-    bottom: 0,
+    width: 300,
+    height: 45,
+    marginTop: 20,
+    alignItems: "center",
   },
   searchSection: {
     marginTop: 15,
