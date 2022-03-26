@@ -1,30 +1,32 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   View,
   TouchableOpacity,
   Text,
   TextInput,
-  KeyboardAvoidingView,
   Dimensions,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { LoginPhoto } from "../components/enlargeImage";
-import { StackActions } from "@react-navigation/native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { pushTheData } from "../components/FirebaseControl";
+
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const phoneWidth = Dimensions.get("window").width;
+const phoneHeight = Dimensions.get("window").height;
 
 export default function App({ navigation }) {
-  const [userName, setUserName] = useState("");
-  const [userPassword, setPassword] = useState("");
+  const [userNameState, setUsername] = useState("");
+  const [userPassword, setUserPassword] = useState("");
+  const [userSex, setUserSex] = useState("");
+  const [userGroupCode, setUserGroupCode] = useState("");
+  const [dogNameState, setDogName] = useState("");
+  const [dogAgeState, setDogAge] = useState(0);
 
   return (
-    <View style={styles.container}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS == "ios" ? "padding" : "height"}
-        style={styles.container}
-      >
+    <KeyboardAwareScrollView>
+      <View style={styles.container}>
         <LoginPhoto size={"medium"} />
         <View style={styles.containerInner}>
           <Text
@@ -33,11 +35,11 @@ export default function App({ navigation }) {
               fontSize: 28,
             }}
           >
-            Register Screen
+            Good day
           </Text>
           <Text
             style={{
-              paddingTop: 10,
+              padding: 10,
               fontSize: 15,
               textAlign: "center",
             }}
@@ -57,7 +59,7 @@ export default function App({ navigation }) {
               style={styles.input}
               placeholder="Enter User Name..."
               underlineColorAndroid="transparent"
-              onChangeText={(newText) => setUserName(newText)}
+              onChangeText={(username) => setUsername(username)}
             />
           </View>
           <View style={styles.searchSection}>
@@ -72,7 +74,23 @@ export default function App({ navigation }) {
               placeholder="Enter User Password..."
               underlineColorAndroid="transparent"
               secureTextEntry={true}
-              onChangeText={(newText) => setPassword(newText)}
+              onChangeText={(password) => setUserPassword(password)}
+            />
+          </View>
+
+          <View style={styles.searchSection}>
+            <MaterialCommunityIcons
+              style={styles.searchIcon}
+              name="lock-alert"
+              size={25}
+              color="#000"
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Confirm Password..."
+              underlineColorAndroid="transparent"
+              secureTextEntry={true}
+              onChangeText={(password) => setUserPassword(password)}
             />
           </View>
 
@@ -87,8 +105,7 @@ export default function App({ navigation }) {
               style={styles.input}
               placeholder="Enter sex..."
               underlineColorAndroid="transparent"
-              secureTextEntry={true}
-              onChangeText={(newText) => setPassword(newText)}
+              onChangeText={(sex) => setUserSex(sex)}
             />
           </View>
 
@@ -103,8 +120,7 @@ export default function App({ navigation }) {
               style={styles.input}
               placeholder="Enter dog's name..."
               underlineColorAndroid="transparent"
-              secureTextEntry={true}
-              onChangeText={(newText) => setPassword(newText)}
+              onChangeText={(dogname) => setDogName(dogname)}
             />
           </View>
 
@@ -119,31 +135,42 @@ export default function App({ navigation }) {
               style={styles.input}
               placeholder="Enter dog age..."
               underlineColorAndroid="transparent"
-              secureTextEntry={true}
-              onChangeText={(newText) => setPassword(newText)}
+              onChangeText={(dogAge) => setDogAge(dogAge)}
             />
           </View>
+
+          <View style={styles.searchSection}>
+            <MaterialCommunityIcons
+              style={styles.searchIcon}
+              name="lock-alert"
+              size={25}
+              color="#000"
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Enter group code..."
+              underlineColorAndroid="transparent"
+              onChangeText={(groupCode) => setUserGroupCode(groupCode)}
+            />
+          </View>
+
           <TouchableOpacity
             style={styles.loginBtn}
-            onPress={async () => {
-              if (userName === "Aaa" && userPassword === "Bbb") {
-                await AsyncStorage.setItem(
-                  "@MySuperStore:key2",
-                  "Admin"
-                ).then();
-                await AsyncStorage.setItem(
-                  "@MySuperStore:key1",
-                  "User112"
-                ).then(navigation.dispatch(StackActions.replace("Home")));
-              }
+            onPress={() => {
+              pushTheData({
+                firstAttempt: true,
+                username: userNameState,
+                dogage: dogAgeState,
+                dogname: dogNameState,
+              });
+              props.closeUp(false);
             }}
           >
             <Text style={{ color: "white", fontSize: 18 }}>Register</Text>
           </TouchableOpacity>
-          <View style={{ height: 20 }} />
         </View>
-      </KeyboardAvoidingView>
-    </View>
+      </View>
+    </KeyboardAwareScrollView>
   );
 }
 
@@ -158,7 +185,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
     width: phoneWidth,
-    height: 500,
+    height: phoneHeight,
     backgroundColor: "rgba(0, 0, 0, 0.08)",
   },
   loginBtn: {
