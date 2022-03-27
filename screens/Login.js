@@ -22,8 +22,8 @@ import { auth } from "../components/FirebaseControl";
 const phoneWidth = Dimensions.get("window").width;
 
 export default function App({ navigation }) {
-  const [userName, setUserName] = useState("ninjayek@gmail.com");
-  const [userPassword, setPassword] = useState("abcdefgg");
+  const [userName, setUserName] = useState("");
+  const [userPassword, setPassword] = useState("");
   const [appIsReady, setAppIsReady] = useState(false);
   const [userDetails, setUserDetails] = useState("");
 
@@ -185,13 +185,14 @@ export default function App({ navigation }) {
             <Text style={{ color: "white", fontSize: 18 }}>Register</Text>
           </TouchableOpacity>
           <View style={{ height: 20 }} />
-          <TouchableOpacity
+          {/* NOTES: This one is facebook login */}
+          {/* <TouchableOpacity
             onPress={() => {
               facebookLogIn();
             }}
           >
             <FacebookLoginButton />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </KeyboardAvoidingView>
     </View>
