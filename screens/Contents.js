@@ -75,6 +75,28 @@ export default function App({ navigation }) {
     setToggleLoading(false);
   }, [data]);
 
+  async function sendPushNotification(expoPushToken) {
+    const message = {
+      to: expoPushToken,
+      sound: "default",
+      title: "Good day",
+      body: "Is time to walk your dog",
+      data: { someData: "goes here" },
+    };
+
+    await fetch("https://exp.host/--/api/v2/push/send", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Accept-encoding": "gzip, deflate",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(message),
+    }).then(() => {
+      console.log("Sent: ", message);
+    });
+  }
+
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -91,9 +113,19 @@ export default function App({ navigation }) {
               renderItem={({ item }) => (
                 <TouchableOpacity
                   style={{ width: 100, height: 100, alignItems: "center" }}
-                  onPress={() => {}}
+                  onPress={() => {
+                    // NOTE: The user data on top of the circle button
+                    // console.log(item.val1);
+                    sendPushNotification(item.val1.fcmToken);
+                  }}
                 >
                   <MaleAvatar />
+                  <Text>
+                    {item.val1.userName.substring(
+                      0,
+                      item.val1.userName.lastIndexOf("@")
+                    )}
+                  </Text>
                 </TouchableOpacity>
               )}
               keyExtractor={(item) => item.key1}
