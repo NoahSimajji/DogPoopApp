@@ -10,6 +10,8 @@ import {
   LogBox,
   ActivityIndicator,
 } from "react-native";
+//NOTE: Testing purpose
+import * as firebase from "firebase";
 import { Ionicons, Entypo, MaterialIcons, AntDesign } from "@expo/vector-icons";
 
 import * as Animatable from "react-native-animatable";
@@ -40,7 +42,6 @@ export default function App({ navigation }) {
   const dogName = useFirebaseDataDogName();
   const firstUpdate = useRef(true);
 
-  // This function is to toggle the color on the icon in flatlist
   const iconColour = (status) => {
     if (status == "GOOD")
       return (
@@ -57,7 +58,6 @@ export default function App({ navigation }) {
     }
   };
 
-  // Sensor for user logout
   useEffect(
     () =>
       navigation.addListener("beforeRemove", (e) => {
@@ -66,7 +66,6 @@ export default function App({ navigation }) {
     [navigation]
   );
 
-  // Sensor for loading indicator
   useEffect(() => {
     if (firstUpdate.current) {
       firstUpdate.current = false;
@@ -192,6 +191,13 @@ export default function App({ navigation }) {
                   "\nDescription: " +
                   item.val1.Comments;
                 alert(output);
+              }}
+              onLongPress={() => {
+                let userRef = firebase
+                  .database()
+                  .ref("Ttt1/DogStatusHistory/" + item.key1);
+                userRef.remove();
+                alert("Record have been deleted.");
               }}
             >
               <View flexDirection="row">
