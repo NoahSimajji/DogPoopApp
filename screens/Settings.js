@@ -112,7 +112,8 @@ export default function App({ navigation }) {
             backgroundColor: "#fff",
           }}
           onPress={() => {
-            alert("Still in development");
+            navigation.navigate("TermsAndCondition");
+            // alert("Still in development");
           }}
         >
           <Octicons name="checklist" size={42} color="gray" />
@@ -182,7 +183,6 @@ export default function App({ navigation }) {
           }}
         >
           <MaterialCommunityIcons name="logout" size={42} color="gray" />
-
           <Text
             style={{
               paddingTop: 10,
@@ -193,53 +193,6 @@ export default function App({ navigation }) {
           </Text>
         </TouchableOpacity>
       </View>
-
-      {data.length === 0 && (
-        <Modal
-          animationType="fade"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            setModalVisible(false);
-          }}
-        >
-          <TouchableOpacity
-            activeOpacity={1.0}
-            style={[
-              styles.containerModal,
-              { backgroundColor: "rgba(0, 0, 0, 0.5)" },
-            ]}
-          ></TouchableOpacity>
-
-          <View
-            style={{
-              backgroundColor: "rgba(0, 0, 0, 0.5)",
-              height: 900,
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Animatable.View
-              animation={"fadeInUp"}
-              iterationCount={1}
-              direction="alternate"
-              style={{
-                backgroundColor: "white",
-                borderTopLeftRadius: 10,
-                borderTopRightRadius: 10,
-                height: "75%",
-                width: "100%",
-                alignItems: "center",
-                paddingTop: 25,
-              }}
-            >
-              <>
-                <ModalSettingUpUser closeUp={setModalVisible} />
-              </>
-            </Animatable.View>
-          </View>
-        </Modal>
-      )}
     </View>
   );
 }
