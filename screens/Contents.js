@@ -21,6 +21,7 @@ import {
   useFirebaseDataDogName,
   useFirebaseDataDogAge,
   useFirebaseDataGroup,
+  deleteTheData,
 } from "../components/FirebaseControl";
 
 import {
@@ -175,13 +176,11 @@ export default function App({ navigation }) {
                 height: 105,
               }}
               onPress={() => {
+                // NOTE: Checking on output
+                // console.log(item);
                 var output =
                   "Dog name: " +
                   dogName +
-                  "\nDog age: " +
-                  dogAge +
-                  "\nCondition: " +
-                  item.val1.Status +
                   "\nDate: " +
                   item.val1.Date +
                   "\nTime: " +
@@ -193,11 +192,7 @@ export default function App({ navigation }) {
                 alert(output);
               }}
               onLongPress={() => {
-                let userRef = firebase
-                  .database()
-                  .ref("Ttt1/DogStatusHistory/" + item.key1);
-                userRef.remove();
-                alert("Record have been deleted.");
+                deleteTheData({ item: item.key1 });
               }}
             >
               <View flexDirection="row">
