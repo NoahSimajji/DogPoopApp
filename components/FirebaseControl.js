@@ -136,6 +136,7 @@ export async function pushTheData(props) {
       dogAge: props.dogAge,
       dogName: props.dogName,
       groupCode: props.userGroupCode,
+      fcmToken: props.fcmToken,
     });
     try {
       const userId = await AsyncStorage.getItem("@MySuperStore:key1");
