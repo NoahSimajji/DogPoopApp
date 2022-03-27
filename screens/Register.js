@@ -11,6 +11,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { LoginPhoto } from "../components/enlargeImage";
 import { pushTheData, auth } from "../components/FirebaseControl";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const phoneWidth = Dimensions.get("window").width;
@@ -32,7 +33,7 @@ export default function App({ navigation }) {
 
     // const email1 = "test@gmail.com";
     // const password1 = "123456";
-
+    const tokenValue = await AsyncStorage.getItem("fcm_token");
     await auth
       .createUserWithEmailAndPassword(userNameState, userPassword)
       .then((userCredential) => {
@@ -47,6 +48,7 @@ export default function App({ navigation }) {
           userGroupCode: userGroupCode,
           dogAge: dogAgeState,
           dogName: dogNameState,
+          fcmToken: tokenValue,
         });
 
         alert("registered.");
