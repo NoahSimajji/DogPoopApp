@@ -92,7 +92,7 @@ export function useFirebaseDataDogAge() {
   function test2() {
     firebase
       .database()
-      .ref("dogs/dogA/dogAge")
+      .ref("Ttt1/Dogs/Angel")
       .on("value", function (snapshot) {
         setData(snapshot.val());
       });
@@ -109,7 +109,7 @@ export function useFirebaseDataDogName() {
   function test2() {
     firebase
       .database()
-      .ref("dogs/dogA/dogName")
+      .ref("Ttt1/Dogs/DogName")
       .on("value", function (snapshot) {
         setData(snapshot.val());
       });

@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
+
 import { MaleAvatar, HomePhoto } from "../components/enlargeImage";
 import {
   useFirebaseDataUsername,
@@ -9,19 +10,17 @@ import {
 
 export default function App(props) {
   // The firebase data taken from another file
-  const userName = useFirebaseDataUsername();
-  const dogAge = useFirebaseDataDogAge();
-  const dogName = useFirebaseDataDogName();
+  // const dogAge = useFirebaseDataDogAge();
+  // const dogName = useFirebaseDataDogName();
+
+  const userName = "Noah";
+  const dogAge = "4";
+  const dogName = "Angel";
 
   return (
     <View style={styles.container}>
-      {/* Displaying the background */}
       <HomePhoto size={"big"} />
-
-      {/* Displaying user avatar */}
       <MaleAvatar size={"big"} />
-
-      {/* Users & dog information */}
       <View
         style={{
           marginTop: 15,
@@ -31,10 +30,10 @@ export default function App(props) {
           paddingTop: 5,
           paddingBottom: 5,
           borderRadius: 10,
-          shadowColor: "rgba(0,0,0, .4)", // IOS
-          shadowOffset: { height: 1, width: 3 }, // IOS
-          shadowOpacity: 3, // IOS
-          shadowRadius: 3, //IOS
+          shadowColor: "rgba(0,0,0, .4)",
+          shadowOffset: { height: 1, width: 3 },
+          shadowOpacity: 3,
+          shadowRadius: 3,
           backgroundColor: "#fff",
           height: 120,
         }}

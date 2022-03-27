@@ -10,8 +10,9 @@ import {
   LogBox,
   ActivityIndicator,
 } from "react-native";
+
 //NOTE: Testing purpose
-import * as firebase from "firebase";
+// import * as firebase from "firebase";
 import { Ionicons, Entypo, MaterialIcons, AntDesign } from "@expo/vector-icons";
 
 import * as Animatable from "react-native-animatable";
