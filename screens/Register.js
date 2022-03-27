@@ -38,7 +38,17 @@ export default function App({ navigation }) {
       .then((userCredential) => {
         const user = userCredential.user;
 
-        setUserUid(user.uid);
+        pushTheData({
+          firstAttempt: true,
+          uid: user.uid,
+          username: userNameState,
+          userPassword: userPassword,
+          userSex: userSex,
+          userGroupCode: userGroupCode,
+          dogAge: dogAgeState,
+          dogName: dogNameState,
+        });
+
         alert("registered.");
       })
       .catch((error) => alert(error));
@@ -179,17 +189,6 @@ export default function App({ navigation }) {
             onPress={() => {
               alert("Submitted");
               testRegister();
-              pushTheData({
-                firstAttempt: true,
-                uid: userUid,
-                username: userNameState,
-                userPassword: userPassword,
-                userSex: userSex,
-                userGroupCode: userGroupCode,
-                dogAge: dogAgeState,
-                dogName: dogNameState,
-              });
-
               // Suppose go to home screen instead
               // navigation.replace("Login");
             }}
