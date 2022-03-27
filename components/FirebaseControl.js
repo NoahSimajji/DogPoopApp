@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Alert } from "react-native";
 import * as firebase from "firebase";
 import { Audio } from "expo-av";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -117,6 +118,26 @@ export function useFirebaseDataDogName() {
     test2();
   }, []);
   return data;
+}
+
+export function deleteTheData(props) {
+  let userRef = firebase.database().ref("Ttt1/DogStatusHistory/" + props.item);
+  Alert.alert("Alert Title", "Are you sure you want to delete this?", [
+    {
+      text: "Cancel",
+      onPress: () => {
+        return;
+      },
+      style: "cancel",
+    },
+    {
+      text: "OK",
+      onPress: () => {
+        userRef.remove();
+        Alert.alert("Record have been deleted.");
+      },
+    },
+  ]);
 }
 
 //Push the data to the cloud
