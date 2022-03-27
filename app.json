@@ -30,6 +30,9 @@
         }
       },
       "googleServicesFile": "./GoogleService-Info.plist"
+    },
+    "android": {
+      "package": "com.applemangoo23.angelapp"
     }
   }
 }
