@@ -32,7 +32,8 @@
       "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
-      "package": "com.applemangoo23.angelapp"
+      "package": "com.applemangoo23.angelapp",
+      "permissions": []
     }
   }
 }
