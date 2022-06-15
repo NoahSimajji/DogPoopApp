@@ -28,11 +28,6 @@ export default function App({ navigation }) {
 
   //This is the register way.
   testRegister = async () => {
-    // const email = "ninjayek@gmail.com";
-    // const password = "abcdefgg";
-
-    // const email1 = "test@gmail.com";
-    // const password1 = "123456";
     const tokenValue = await AsyncStorage.getItem("fcm_token");
     await auth
       .createUserWithEmailAndPassword(userNameState, userPassword)

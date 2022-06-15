@@ -33,7 +33,8 @@
     },
     "android": {
       "package": "com.applemangoo23.angelapp",
-      "permissions": []
+      "permissions": [],
+      "versionCode": 3
     }
   }
 }

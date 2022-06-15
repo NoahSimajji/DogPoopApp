@@ -3,6 +3,7 @@ import { Animated, View } from "react-native";
 
 const image = require("../assets/prettyDog.png");
 const image2 = require("../assets/dogPark.png");
+const angel_cartoon = require("../assets/angelCartoon.jpeg");
 const image4 = require("../assets/facebookButton.jpg");
 const image5 = require("../assets/avatar1.png");
 const image6 = require("../assets/avatar2.png");
@@ -11,11 +12,12 @@ export function PhotoAnimation(props) {
   return (
     <View>
       <Animated.Image
-        source={image}
+        source={angel_cartoon}
         resizeMode="cover"
         style={{
           width: 90,
-          height: 80,
+          height: 90,
+          aspectRatio: 1 / 1,
           borderRadius: 12,
           alignSelf: "center",
           marginTop: -1,

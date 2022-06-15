@@ -109,6 +109,7 @@ export function ModalFeatures(props) {
         </View>
         <TouchableOpacity
           onPress={() => {
+            props.notify(props.users);
             pushTheData({ status: condition, text: textInputValue });
             props.modalVisible(false);
           }}

@@ -11,16 +11,12 @@ import {
   ActivityIndicator,
 } from "react-native";
 
-//NOTE: Testing purpose
-// import * as firebase from "firebase";
 import { Ionicons, Entypo, MaterialIcons, AntDesign } from "@expo/vector-icons";
-
 import * as Animatable from "react-native-animatable";
 import {
   useFirebaseData,
   useFirebaseDataUsername,
   useFirebaseDataDogName,
-  useFirebaseDataDogAge,
   useFirebaseDataGroup,
   deleteTheData,
 } from "../components/FirebaseControl";
@@ -40,7 +36,6 @@ export default function App({ navigation }) {
   const data = useFirebaseData();
   const dataGroup = useFirebaseDataGroup();
   const userName = useFirebaseDataUsername();
-  const dogAge = useFirebaseDataDogAge();
   const dogName = useFirebaseDataDogName();
   const firstUpdate = useRef(true);
 
@@ -81,7 +76,7 @@ export default function App({ navigation }) {
       to: expoPushToken,
       sound: "default",
       title: "Good day",
-      body: "Is time to walk your dog",
+      body: "Knock, knock. Is time to walk your dog",
       data: { someData: "goes here" },
     };
 
@@ -95,6 +90,30 @@ export default function App({ navigation }) {
       body: JSON.stringify(message),
     }).then(() => {
       console.log("Sent: ", message);
+    });
+  }
+
+  async function newUpdates(user) {
+    user.map(async (fcm) => {
+      const { fcmToken } = fcm.val1;
+      const message = {
+        to: fcmToken,
+        sound: "default",
+        title: "Good day",
+        body: "New updates, Someone walked your dog.",
+        data: { someData: "goes here" },
+      };
+      await fetch("https://exp.host/--/api/v2/push/send", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Accept-encoding": "gzip, deflate",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(message),
+      }).then(() => {
+        console.log("Sent: ", message);
+      });
     });
   }
 
@@ -115,8 +134,6 @@ export default function App({ navigation }) {
                 <TouchableOpacity
                   style={{ width: 100, height: 100, alignItems: "center" }}
                   onPress={() => {
-                    // NOTE: The user data on top of the circle button
-                    // console.log(item.val1);
                     sendPushNotification(item.val1.fcmToken);
                   }}
                 >
@@ -161,25 +178,9 @@ export default function App({ navigation }) {
           })}
           renderItem={({ item }) => (
             <TouchableOpacity
-              style={{
-                marginTop: 15,
-                marginLeft: 10,
-                marginBottom: 2,
-                marginRight: 10,
-                paddingTop: 5,
-                paddingBottom: 5,
-                borderRadius: 10,
-                shadowColor: "rgba(0,0,0, .4)", // IOS
-                shadowOffset: { height: 1, width: 3 }, // IOS
-                shadowOpacity: 3, // IOS
-                shadowRadius: 3, //IOS
-                backgroundColor: "#fff",
-                height: 105,
-              }}
+              style={styles.flatListStyling}
               onPress={() => {
-                // NOTE: Checking on output
-                // console.log(item);
-                var output =
+                const output =
                   "Dog name: " +
                   dogName +
                   "\nDate: " +
@@ -268,50 +269,23 @@ export default function App({ navigation }) {
             setModalVisible(false);
           }}
         ></TouchableOpacity>
-
-        <View
-          style={{
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            height: 450,
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
+        <View style={styles.modalFadeView}>
           <Animatable.View
             animation={"fadeInUp"}
             iterationCount={1}
             direction="alternate"
-            style={{
-              backgroundColor: "white",
-              borderTopLeftRadius: 10,
-              borderTopRightRadius: 10,
-              height: 450,
-              width: "100%",
-              alignItems: "center",
-              paddingTop: 25,
-            }}
+            style={styles.modalFadeUp}
           >
-            <>
-              <ModalFeatures modalVisible={setModalVisible} />
-            </>
+            <ModalFeatures
+              modalVisible={setModalVisible}
+              notify={newUpdates}
+              users={dataGroup}
+            />
           </Animatable.View>
         </View>
       </Modal>
-
       <TouchableOpacity
-        style={{
-          borderWidth: 1,
-          borderColor: "rgba(0,0,0,0.2)",
-          alignItems: "center",
-          justifyContent: "center",
-          width: 60,
-          position: "absolute",
-          bottom: 5,
-          right: 24,
-          height: 60,
-          backgroundColor: "#fff",
-          borderRadius: 20,
-        }}
+        style={styles.floatingPlusIcon}
         onPress={() => {
           setModalVisible(true);
         }}
@@ -331,5 +305,48 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+  },
+  floatingPlusIcon: {
+    borderWidth: 1,
+    borderColor: "rgba(0,0,0,0.2)",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 60,
+    position: "absolute",
+    bottom: 5,
+    right: 24,
+    height: 60,
+    backgroundColor: "#fff",
+    borderRadius: 20,
+  },
+  modalFadeUp: {
+    backgroundColor: "white",
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    height: 450,
+    width: "100%",
+    alignItems: "center",
+    paddingTop: 25,
+  },
+  modalFadeView: {
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    height: 450,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  flatListStyling: {
+    marginTop: 15,
+    marginLeft: 10,
+    marginBottom: 2,
+    marginRight: 10,
+    paddingTop: 5,
+    paddingBottom: 5,
+    borderRadius: 10,
+    shadowColor: "rgba(0,0,0, .4)", // IOS
+    shadowOffset: { height: 1, width: 3 }, // IOS
+    shadowOpacity: 3, // IOS
+    shadowRadius: 3, //IOS
+    backgroundColor: "#fff",
+    height: 105,
   },
 });
