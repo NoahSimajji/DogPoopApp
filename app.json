@@ -10,6 +10,7 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
+    "icon": "./assets/angelCartoon.png",
     "splash": {
       "image": "./assets/dogPark.png",
       "resizeMode": "contain",
@@ -22,7 +23,7 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "bundleIdentifier": "com.applemangoo23.angelapp",
       "config": {
         "googleSignIn": {
@@ -32,6 +33,10 @@
       "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/angelCartoon.png",
+        "backgroundColor": "#FFFFFF"
+      },
       "package": "com.applemangoo23.angelapp",
       "permissions": [],
       "versionCode": 3
