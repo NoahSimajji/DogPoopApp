@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "154350512943",
+    "firebase_url": "https://angelapp-6b5e0.firebaseio.com",
+    "project_id": "angelapp-6b5e0",
+    "storage_bucket": "angelapp-6b5e0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154350512943:android:5acb09655c381c8926cfda",
+        "android_client_info": {
+          "package_name": "com.applemangoo23.angelapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "154350512943-hndtkprp4uvdd20e6sn3gpkkjq4pr851.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD12WaVQgq8qVlDwG0S7vCcGf2vo9wylFc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "154350512943-hndtkprp4uvdd20e6sn3gpkkjq4pr851.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "154350512943-n56qo6aemugf9sdtmeavj7f89phe72kb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.applemangoo23.angelapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

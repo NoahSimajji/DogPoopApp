@@ -33,6 +33,7 @@
       "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/angelCartoon.png",
         "backgroundColor": "#FFFFFF"
